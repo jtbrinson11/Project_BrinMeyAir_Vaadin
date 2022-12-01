@@ -1,10 +1,13 @@
 package com.example.application.views.tracking;
 
 import com.example.application.views.MainLayout;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -13,19 +16,33 @@ import com.vaadin.flow.router.Route;
 public class TrackingView extends VerticalLayout {
 
     public TrackingView() {
-        setSpacing(false);
+        VerticalLayout layout = new VerticalLayout();
 
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
+        Div head = new Div();
+        H1 pageTitle = new H1("Tracking");
+        pageTitle.addClassNames("my-m", "me-auto", "text-c");
+        head.add(pageTitle);
+        layout.add(head);
 
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
+        layout.add(createTrackingForm());
 
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+        layout.setSizeFull();
+        layout.setHorizontalComponentAlignment(Alignment.CENTER);
+        layout.getStyle().set("text-align", "center");
+
+        this.add(layout);
+    }
+
+    private Component createTrackingForm() {
+        VerticalLayout main = new VerticalLayout();
+        TextField orderNo = new TextField();
+        orderNo.setValue("Enter tracking number . . .");
+        Button submit = new Button("Track item");
+        FormLayout form = new FormLayout(orderNo);
+        main.add(form, submit);
+        main.setHorizontalComponentAlignment(Alignment.CENTER);
+
+        return main;
     }
 
 }

@@ -1,9 +1,7 @@
 package com.example.application.views.shipping;
 
 import com.example.application.views.MainLayout;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -13,19 +11,19 @@ import com.vaadin.flow.router.Route;
 public class ShippingView extends VerticalLayout {
 
     public ShippingView() {
-        setSpacing(false);
+        VerticalLayout layout = new VerticalLayout();
 
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
+        Div head = new Div();
+        H1 pageTitle = new H1("Shipping");
+        pageTitle.addClassNames("my-m", "me-auto", "text-c");
+        head.add(pageTitle);
+        layout.add(head);
 
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
+        layout.setSizeFull();
+        layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        layout.getStyle().set("text-align", "center");
 
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+        this.add(layout);
     }
 
 }

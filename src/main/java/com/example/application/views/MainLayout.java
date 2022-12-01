@@ -16,6 +16,8 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
 
 /**
@@ -71,15 +73,22 @@ public class MainLayout extends AppLayout {
     }
 
     private Component createHeaderContent() {
-        Header header = new Header();
-        header.addClassNames("box-border", "flex", "flex-col", "w-full");
 
-        Div layout = new Div();
-        layout.addClassNames("flex", "items-center", "px-l");
+        HorizontalLayout layout = new HorizontalLayout();
+
+        layout.setId("header");
+        layout.addClassNames("box-border", "flex", "flex-col", "w-full");
+        layout.getThemeList().set("light", true);
+        layout.setWidthFull();
+        layout.setSpacing(false);
+        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+
+        Div layout1 = new Div();
+        layout1.addClassNames("flex", "items-center", "px-l");
 
         H1 appName = new H1("BrinMey Air");
         appName.addClassNames("my-m", "me-auto", "text-l");
-        layout.add(appName);
+        layout1.add(appName);
 
         Nav nav = new Nav();
         nav.addClassNames("flex", "overflow-auto", "px-m", "py-xs");
@@ -94,13 +103,13 @@ public class MainLayout extends AppLayout {
 
         }
 
-        header.add(layout, nav);
-        return header;
+        layout.add(layout1, nav);
+        return layout;
     }
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("Index", "la la-home", IndexView.class), //
+                new MenuItemInfo("Home", "la la-home", IndexView.class), //
 
                 new MenuItemInfo("Services", "la la-truck-moving", ServicesView.class), //
 
