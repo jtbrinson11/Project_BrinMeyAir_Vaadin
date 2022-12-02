@@ -20,6 +20,7 @@ import com.vaadin.flow.router.Route;
 public class ServicesView extends VerticalLayout {
 
     private Text serviceSelected = new Text("");
+    Component textArea;
 
     public ServicesView() {
         VerticalLayout layout = new VerticalLayout();
@@ -30,11 +31,12 @@ public class ServicesView extends VerticalLayout {
         head.add(pageTitle);
         layout.add(head);
 
-        Text clickBelow = new Text("Select services by:");
+        Text clickBelow = new Text("Select services:");
         layout.add(clickBelow);
 
-        layout.add(createDropDownMenu());
-        layout.add(createTextArea());
+        layout.add(createServiceTabs());
+        textArea = createTextArea();
+        layout.add(textArea);
 
         layout.setSizeFull();
         layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -43,20 +45,17 @@ public class ServicesView extends VerticalLayout {
         add(layout);
     }
 
-    private Component createDropDownMenu() {
-        MenuBar menuBar = new MenuBar();
-        ComponentEventListener<ClickEvent<MenuItem>> listener = e -> serviceSelected
-                .setText(e.getSource().getText());
+    private Component createServiceTabs() {
+        Tab slowest = new Tab("Slowest");
+        Tab slower = new Tab("Slower");
+        Tab normal = new Tab("Normal");
+        Tab quicker = new Tab("Quicker");
+        Tab quickest = new Tab("Quickest");
 
-        MenuItem share = menuBar.addItem("Name");
-        SubMenu shareSubMenu = share.getSubMenu();
-        shareSubMenu.addItem("Slowest", listener);
-        shareSubMenu.addItem("Slower", listener);
-        shareSubMenu.addItem("Normal", listener);
-        shareSubMenu.addItem("Quicker", listener);
-        shareSubMenu.addItem("Quickest", listener);
+        Tabs serviceTabs = new Tabs(slowest, slower, normal, quicker, quickest);
+        serviceTabs.setSelectedTab(normal);
 
-        return menuBar;
+        return serviceTabs;
     }
 
     private Component createTextArea() {
@@ -67,7 +66,6 @@ public class ServicesView extends VerticalLayout {
         Tab details = new Tab("Details");
         Tabs options = new Tabs(overview, details);
         options.setOrientation(Tabs.Orientation.HORIZONTAL);
-        options.setEnabled(false);
         textArea.add(options);
         area.add(textArea);
 

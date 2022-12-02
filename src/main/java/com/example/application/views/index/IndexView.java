@@ -1,9 +1,7 @@
 package com.example.application.views.index;
 
 import com.example.application.views.MainLayout;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -15,12 +13,22 @@ import com.vaadin.flow.router.RouteAlias;
 public class IndexView extends VerticalLayout {
 
     public IndexView() {
-        setSpacing(false);
+        VerticalLayout layout = new VerticalLayout();
 
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+        Div head = new Div();
+        H1 pageTitle = new H1("Welcome to BrinMey Air");
+        pageTitle.addClassNames("my-m", "me-auto", "text-c");
+        head.add(pageTitle);
+        layout.add(head);
+
+        Paragraph para = new Paragraph("Welcome to BrinMey Air. We ship all over the world, but our focus is always you.");
+        layout.add(para);
+
+        layout.setSizeFull();
+        layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        layout.getStyle().set("text-align", "center");
+
+        add(layout);
     }
 
 }

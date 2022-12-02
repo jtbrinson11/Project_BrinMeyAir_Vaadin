@@ -2,7 +2,9 @@ package com.example.application.views.tracking;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -27,22 +29,22 @@ public class TrackingView extends VerticalLayout {
         layout.add(createTrackingForm());
 
         layout.setSizeFull();
-        layout.setHorizontalComponentAlignment(Alignment.CENTER);
+        layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         layout.getStyle().set("text-align", "center");
 
-        this.add(layout);
+        add(layout);
     }
 
     private Component createTrackingForm() {
-        VerticalLayout main = new VerticalLayout();
-        TextField orderNo = new TextField();
-        orderNo.setValue("Enter tracking number . . .");
+        VerticalLayout form = new VerticalLayout();
+        TextField orderNo = new TextField("Enter tracking number . . .");
+        orderNo.setWidth(50, Unit.PERCENTAGE);
         Button submit = new Button("Track item");
-        FormLayout form = new FormLayout(orderNo);
-        main.add(form, submit);
-        main.setHorizontalComponentAlignment(Alignment.CENTER);
+        submit.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        form.add(orderNo, submit);
+        form.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        return main;
+        return form;
     }
 
 }
