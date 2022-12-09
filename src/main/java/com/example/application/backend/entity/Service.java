@@ -10,11 +10,11 @@ import javax.validation.constraints.NotNull;
 public class Service extends AbstractEntity implements Cloneable{
 
     public enum serviceTypes {
-        slowest, slower, normal, quicker, quickest
+        Slowest, Slower, Normal, Quicker, Quickest
     }
     @NotNull
     @NotEmpty
-    @OneToOne(mappedBy = "service", fetch = FetchType.EAGER)
+    //@OneToOne(mappedBy = "service", fetch = FetchType.EAGER)
     private serviceTypes name;
 
     @NotNull

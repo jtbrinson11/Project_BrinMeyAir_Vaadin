@@ -16,6 +16,7 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.data.validator.RegexpValidator;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -52,6 +53,7 @@ public class ContactUsView extends VerticalLayout {
 
         RadioButtonGroup<String> radioGroup = new RadioButtonGroup<>("How can we help?");
         radioGroup.setItems("General", "Shipping", "Tracking", "Other");
+        radioGroup.setRequired(true);
 
         TextArea other = new TextArea("Enter message here (300 character max):");
         other.setWidth(35, Unit.PERCENTAGE);
